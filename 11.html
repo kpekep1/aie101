@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Пример использования цикла for</TITLE>
+</HEAD>
+<BODY>
+<?php
+if(isset($_POST['posted']))
+{ echo "<form method='POST' action='dynamic.php'>";
+for ($counter = 0; $counter < $_POST['number']; $counter++)
+{ $offset = $counter + 1;
+echo "<br>Введите имя $offset-гo ребенка<br>";
+echo "<input name='child[]' type='text'>";}
+echo "<br>Для продолжения нажмите кнопку<<br>";
+echo "<input type='submit' value='Далее'>";
+echo "<input type='hidden' name='posted01' value='true'></FORM>";}
+else { if (isset($_POST['posted01']))
+{ $count=0;
+echo "<B>Имена Ваших детей: </B>";
+do { $childs_name=$_POST['child'][$count];
+echo"<br>$childs_name";
+$checkempty = $childs_name;
+$count = $count + 1; }
+while ($checkempty != "");
+if ($count == 1)
+{ echo "Введите другое число"; } }
+?>
+<HR>
+<FORM method="POST" action="11.php">
+<INPUT type="hidden" name="posted" value="true">
+Сколько у Вас детей?
+<INPUT name="number" type="text"><BR><BR>
+<INPUT type="submit" value="Отправить число"><BR>
+</FORM>
+<?php } ?>
+</BODY>
+</HTML>
